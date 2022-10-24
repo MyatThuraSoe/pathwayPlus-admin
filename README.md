@@ -1,3 +1,3 @@
 # pathwayPlus-admin
 
-front end for the admin site of Pathway Plus Myanmar. 
+repository for the admin site of Pathway Plus Myanmar. 
