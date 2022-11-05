@@ -5,7 +5,6 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@next/next/recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
     ],
@@ -22,9 +21,19 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "indent": [ "warn", 2 ],
-        "quotes": [ "warn","double" ],
-        "semi": [ "warn","always" ],
+        "react/jsx-one-expression-per-line": [ "warn", { "allow": "single-child" }],
+        "react/jsx-props-no-multi-spaces": "warn",
+        "react/jsx-indent": ["warn", 2],
+        "quotes": ["warn", "double"],
+        "semi": ["warn", "always"],
+        "indent": ["warn", 2],
+        "brace-style": ["warn", "1tbs"],
+        "object-curly-newline": ["warn", { "consistent": true }],
+        "no-multi-spaces": "warn",
+        "no-multiple-empty-lines": ["warn", { "max": 1 }],
+        "no-trailing-spaces": "warn",
+        "array-bracket-spacing": ["warn", "never"],
+        "comma-dangle": ["warn", "always-multiline"],
         "@typescript-eslint/no-explicit-any": "off"
     }
 }
