@@ -31,6 +31,7 @@ export default function useLogin() {
       }
 
       if (responseData.password !== undefined) {
+        setCookie("email", responseData.email);
         setCookie("token", responseData.password);
         setLoading(false);
         return true;

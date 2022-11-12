@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import Header from "./Header";
+import SideBar from "./SideBar";
 
 const pagesWithoutHeader = ["/", "/login"];
 
@@ -11,7 +12,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {hasHeader && <Header />}
-      <main>{children}</main>
+      <div className="flex">
+        <SideBar />
+        <main className="h-full w-full">{children}</main>
+      </div>
     </>
   );
 };

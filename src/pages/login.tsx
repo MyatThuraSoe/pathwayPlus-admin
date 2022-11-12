@@ -1,15 +1,27 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import useLogin from "../hooks/useLogin";
 
 import Title from "../components/Title";
-import { useRouter } from "next/router";
 
 interface LoginFormElement {
   email: HTMLInputElement;
   password: HTMLInputElement;
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const { token } = req.cookies;
+  if (token !== undefined && token !== "") {
+    // redirect to consultants if logged in
+    res.setHeader("location", "/consultants");
+    res.statusCode = 302;
+    res.end();
+  }
+
+  return { props: {} };
+};
 
 const Login: NextPage = () => {
   const router = useRouter();
