@@ -20,7 +20,7 @@ const SideBar: React.FC = () => {
   const pathName = `/${router.asPath.split("/")[1]}`; // only first part of url
 
   return (
-    <nav className="flex flex-col py-8 gap-y-6 md:gap-y-3 border-r-2">
+    <nav className="flex min-w-max flex-col py-8 gap-y-6 md:gap-y-3 border-r-2">
       <NavButton title="Consultants" IconType={FaRegUser} path="/consultants" currentPath={pathName} />
       <NavButton title="Proof-reading" IconType={HiOutlineDocument} path="/proofreading" currentPath={pathName} />
       <NavButton title="Events" IconType={TbCalendarTime} path="/events" currentPath={pathName} />
