@@ -47,15 +47,15 @@ const Login: NextPage = () => {
           <Image src="/assets/logo-orange.png" layout="fill" alt="Pathway Plus Logo" />
         </div>
         <form onSubmit={onLogin} className="flex flex-col px-8 pt-8">
-          <h1 className="pl-2 py-1 text-lg border-l-4 border-primary">Log In</h1>
+          <h1 className="pl-2 py-1 mb-8 text-lg border-l-4 border-primary">Log In</h1>
 
-          <label htmlFor="email" className="first-of-type:mt-8 pt-4">Email Address</label>
-          <input required id="email" placeholder="Enter your email address" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
+          <label htmlFor="email" className="pt-4 max-w-max">Email Address</label>
+          <input required disabled={loading} id="email" placeholder="Enter your email address" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
 
-          <label htmlFor="password" className="first-of-type:mt-10 pt-4">Password</label>
-          <input required id="password" placeholder="Enter your password" type="password" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
+          <label htmlFor="password" className="pt-4 max-w-max">Password</label>
+          <input required disabled={loading} id="password" placeholder="Enter your password" type="password" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
 
-          {typeof error === "string" && <p className="text-pink-red">{error}</p>}
+          <p className="text-pink-red">{error}</p>
 
           <button disabled={loading} className={`self-start my-8 p-2 md:w-96 w-full ${loading ? "bg-gray-200" :"bg-primary"} text-white rounded-md`}>Login</button>
         </form>

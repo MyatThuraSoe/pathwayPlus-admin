@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       {hasHeader && <Header />}
       <div className="flex">
-        <SideBar />
+        {hasHeader && <SideBar />}
         <main className="h-full w-full">{children}</main>
       </div>
     </>

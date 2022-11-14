@@ -26,7 +26,7 @@ export default function useLogin() {
 
       if (responseData.error !== undefined) {
         setLoading(false);
-        setError(responseData.error);
+        if (typeof responseData.error === "string") setError(responseData.error);
         return false;
       }
 
@@ -39,6 +39,7 @@ export default function useLogin() {
 
       return false;
     } catch (e) {
+      setError("No connection");
       setLoading(false);
       return false;
     }
