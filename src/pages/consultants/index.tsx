@@ -21,8 +21,8 @@ const Consultants: NextPage = () => {
 
       <div className="flex gap-x-4 mb-4">
         <h1 className="flex flex-1 text-xs md:text-base">Number of consultants</h1>
-        <button className="border-2 w-12 rounded-md border-black" disabled>8</button>
-        <Link href="/consultants/create">
+        <button className="border-2 w-12 rounded-md border-black" disabled>{consultantsData.length}</button>
+        <Link href="/consultants/new">
           <button className="border-2 w-12 rounded-md border-primary text-primary">+</button>
         </Link>
       </div>

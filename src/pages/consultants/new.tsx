@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
 
 import Title from "../../components/Title";
 
 const CreateConsultants: NextPage = () => {
   const [tab, setTab] = useState<"Information" | "Sessions">("Information");
   const [form, setForm] = useState({});
+  const [src, setSrc] = useState("/assets/no_image.png");
 
   const editForm = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm((oldForm) => {
     const field = e.target.id;
@@ -14,6 +15,15 @@ const CreateConsultants: NextPage = () => {
     newForm[field] = e.target.value;
     return newForm;
   });
+
+  const saveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.target.files;
+    if (fileList !== null) {
+      const file = fileList[0];
+      const url = URL.createObjectURL(file);
+      setSrc(url);
+    }
+  };
 
   return (
     <div className="p-4 px-4 md:px-20 max-w-3xl">
@@ -34,27 +44,28 @@ const CreateConsultants: NextPage = () => {
 
       {tab === "Information"
         ? <div className="flex flex-col md:flex-row gap-x-10 gap-y-4">
-          <div className="max-w-min">
-            <AiOutlineUser className="h-28 w-28 bg-slate-300 text-white" />
-            <p className="mt-1 text-right text-xs text-primary">Edit profile</p>
+          <div className="flex flex-col mb-6 max-w-max">
+            <Image layout="fixed" height={150} width={150} src={src} />
+            <label htmlFor="img" className="text-primary text-sm text-right cursor-pointer">Edit profile</label>
+            <input required type="file" id="img" name="img" accept="image/*" onChange={saveImage} className="hidden" />
           </div>
           <form className="relative flex flex-col">
-            <label htmlFor="name" className="text-sm">Consultant name</label>
-            <input id="name" placeholder="Enter name" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="email" className="text-sm">Email Address</label>
-            <input id="email" placeholder="Enter email address" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="university" className="text-sm">University</label>
-            <input id="university" placeholder="Enter university name" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="specialization" className="text-sm">Specialization</label>
-            <input id="specialization" placeholder="Enter specialization" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+            <label htmlFor="name" className="text-sm">Consultant name*</label>
+            <input required id="name" placeholder="Enter name" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+            <label htmlFor="email" className="text-sm">Email Address*</label>
+            <input required id="email" placeholder="Enter email address" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+            <label htmlFor="university" className="text-sm">University*</label>
+            <input required id="university" placeholder="Enter university name" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+            <label htmlFor="specialization" className="text-sm">Specialization*</label>
+            <input required id="specialization" placeholder="Enter specialization" onChange={editForm} className="md:w-[600px] mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
             <div className="flex flex-col md:flex-row gap-x-2">
               <div className="flex flex-col flex-1">
-                <label htmlFor="year" className="text-sm">Year</label>
-                <input id="year" placeholder="E.g. Final Year" onChange={editForm} className="mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+                <label htmlFor="year" className="text-sm">Year*</label>
+                <input required id="year" placeholder="E.g. Final Year" onChange={editForm} className="mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
               </div>
               <div className="flex flex-col flex-1">
-                <label htmlFor="country" className="text-sm">Country</label>
-                <input id="country" placeholder="Select Country" onChange={editForm} className="mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
+                <label htmlFor="country" className="text-sm">Country*</label>
+                <input required id="country" placeholder="Select Country" onChange={editForm} className="mt-1 mb-4 p-2 text-sm border-2 rounded-md" />
               </div>
             </div>
             <label htmlFor="biography" className="text-sm">Bio</label>

@@ -8,3 +8,21 @@ interface Consultant {
   year: string;
   introduction: string;
 }
+
+interface Volunteer {
+  _id: string;
+  name: string;
+  role: { name: string };
+  department: { name: string };
+  duration: string;
+}
+
+interface Blog {
+  _id: string,
+  cover: string,
+  title: string,
+  body: string,
+  categories: Array<string>,
+  createdAt: string,
+  updatedAt: string,
+}
