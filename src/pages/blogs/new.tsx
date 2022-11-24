@@ -32,7 +32,7 @@ const CreateBlog: NextPage = () => {
 
       <div className="flex flex-col md:flex-row">
 
-        <Link href="/volunteers">
+        <Link href="/blogs">
           <AiOutlineArrowLeft className="mr-5 mb-4 text-xl cursor-pointer text-primary" />
         </Link>
 
