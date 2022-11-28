@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineUsers, HiOutlineDocument } from "react-icons/hi";
 import { TbCalendarTime, TbClipboardText } from "react-icons/tb";
-import { BsFileText } from "react-icons/bs";
 import { RiSuitcaseLine } from "react-icons/ri";
 import { IconType } from "react-icons";
 
@@ -24,10 +23,9 @@ const SideBar: React.FC = () => {
       <NavButton title="Consultants" IconType={FaRegUser} path="/consultants" currentPath={pathName} />
       <NavButton title="Proof-reading" IconType={HiOutlineDocument} path="/proofreading" currentPath={pathName} />
       <NavButton title="Events" IconType={TbCalendarTime} path="/events" currentPath={pathName} />
-      <NavButton title="Blogs" IconType={BsFileText} path="/blogs" currentPath={pathName} />
-      <NavButton title="Career" IconType={RiSuitcaseLine} path="/career" currentPath={pathName} />
+      <NavButton title="Vacancies" IconType={RiSuitcaseLine} path="/vacancies" currentPath={pathName} />
       <NavButton title="Volunteer List" IconType={HiOutlineUsers} path="/volunteers" currentPath={pathName} />
-      <NavButton title="Registered Students" IconType={TbClipboardText} path="/students" currentPath={pathName} />
+      <NavButton title="Appointments" IconType={TbClipboardText} path="/appointments" currentPath={pathName} />
     </nav>
   );
 };
@@ -35,8 +33,8 @@ const SideBar: React.FC = () => {
 const NavButton = ({ title, IconType, path, currentPath }: NavButtonProps) => {
   const selected = path === currentPath;
   return (
-    <Link href={path}>
-      <div className={`flex items-center px-3 md:px-6 py-1 gap-x-3 cursor-pointer text-gray-600 ${selected ? "!text-primary border-r-4 border-primary" : ""}`}>
+    <Link href={selected ? {} : path}>
+      <div className={`flex items-center px-3 md:pl-6 md: pr-12 py-1 gap-x-3 cursor-pointer text-gray-600 ${selected ? "!text-primary border-r-4 border-primary" : ""}`}>
         <IconType />
         <p className="md:flex hidden">{title}</p>
       </div>
