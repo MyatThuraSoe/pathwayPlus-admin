@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
-const pagesWithoutHeader = ["/", "/login"];
+const pagesWithoutHeader = ["/", "/login", "/404"];
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const { pathname } = useRouter();
