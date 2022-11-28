@@ -31,3 +31,8 @@ interface Vacancy {
   // temporary, change later when api is implemented
   [key: string]: any
 }
+
+interface Event {
+  // temporary, change later when api is implemented
+  [key: string]: any
+}
