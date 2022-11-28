@@ -26,3 +26,8 @@ interface Blog {
   createdAt: string,
   updatedAt: string,
 }
+
+interface Vacancy {
+  // temporary, change later when api is implemented
+  [key: string]: any
+}
