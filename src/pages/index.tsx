@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
 const Index: NextPage = () => {
   return (
-    <div />
+    <p>404</p>
   );
 };
 

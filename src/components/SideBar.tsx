@@ -19,7 +19,7 @@ const SideBar: React.FC = () => {
   const pathName = `/${router.asPath.split("/")[1]}`; // only first part of url
 
   return (
-    <nav className="flex min-w-max flex-col py-8 gap-y-6 md:gap-y-3 border-r-2">
+    <nav className="flex min-w-fit flex-col py-8 gap-y-6 md:gap-y-3 border-r-2">
       <NavButton title="Consultants" IconType={FaRegUser} path="/consultants" currentPath={pathName} />
       <NavButton title="Proof-reading" IconType={HiOutlineDocument} path="/proofreading" currentPath={pathName} />
       <NavButton title="Events" IconType={TbCalendarTime} path="/events" currentPath={pathName} />
@@ -34,9 +34,9 @@ const NavButton = ({ title, IconType, path, currentPath }: NavButtonProps) => {
   const selected = path === currentPath;
   return (
     <Link href={selected ? {} : path}>
-      <div className={`flex items-center px-3 md:pl-6 md: pr-12 py-1 gap-x-3 cursor-pointer text-gray-600 ${selected ? "!text-primary border-r-4 border-primary" : ""}`}>
+      <div className={`flex items-center px-3 md:pl-6  py-1 gap-x-3 cursor-pointer text-gray-600 ${selected ? "!text-primary border-r-4 border-primary" : ""}`}>
         <IconType />
-        <p className="md:flex hidden">{title}</p>
+        <p className="md:flex hidden md:pr-12">{title}</p>
       </div>
     </Link>
   );
