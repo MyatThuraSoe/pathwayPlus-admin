@@ -55,11 +55,11 @@ const CreateEvent: NextPage = () => {
             <div className="md:flex gap-x-6">
               <div className="flex flex-col flex-1">
                 <label htmlFor="name" className="text-sm">Event Name</label>
-                <input required id="name" onChange={editForm} className="mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
+                <input required id="name" placeholder="Event Name" onChange={editForm} className="mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
               </div>
               <div className="flex flex-col flex-1">
                 <label htmlFor="organizer" className="text-sm">Organizer</label>
-                <input required id="organizer" onChange={editForm} className="mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
+                <input required id="organizer" placeholder="Organizer Name" onChange={editForm} className="mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
               </div>
             </div>
             <div className="md:flex gap-x-6">
@@ -79,7 +79,7 @@ const CreateEvent: NextPage = () => {
             <label htmlFor="link" className="text-sm">Register Link</label>
             <input required id="link" type="url" placeholder="Google form link or email for applying position" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
 
-            <button className="w-32 py-4 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
+            <button className="w-32 py-3 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
               Create
             </button>
           </form>

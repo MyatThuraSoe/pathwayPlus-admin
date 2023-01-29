@@ -22,7 +22,6 @@ export default function useLogin() {
         return false;
       }
       const responseData = await response.json();
-      // console.log(responseData); //debug
 
       if (responseData.error !== undefined) {
         setLoading(false);

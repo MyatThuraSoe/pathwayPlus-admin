@@ -51,7 +51,7 @@ const Login: NextPage = () => {
           <h1 className="pl-2 py-1 mb-8 text-lg border-l-4 border-primary">Log In</h1>
 
           <label htmlFor="email" className="mt-4 max-w-max">Email Address</label>
-          <input required disabled={loading} id="email" placeholder="Enter your email address" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
+          <input required disabled={loading} id="email" placeholder="Enter your email address" type="email" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
 
           <label htmlFor="password" className="mt-4 max-w-max">Password</label>
           <input required disabled={loading} id="password" placeholder="Enter your password" type="password" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />

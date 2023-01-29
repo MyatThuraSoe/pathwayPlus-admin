@@ -29,15 +29,15 @@ const CreateVolunteer: NextPage = () => {
           <h1 className="mb-3">Add Volunteer</h1>
 
           <form className="relative flex flex-col">
-            <label htmlFor="name" className="text-sm">Name*</label>
+            <label htmlFor="name" className="text-sm">Name</label>
             <input required id="name" placeholder="Volunteer Name" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="role" className="text-sm">Role*</label>
+            <label htmlFor="role" className="text-sm">Role</label>
             <input required id="role" placeholder="Volunteer's Role" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="department" className="text-sm">Department*</label>
+            <label htmlFor="department" className="text-sm">Department</label>
             <input required id="department" placeholder="Department" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
-            <label htmlFor="duration" className="text-sm">Duration*</label>
-            <input required id="duration" placeholder="00" type="number" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
-            <button className="w-36 py-2 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
+            <label htmlFor="start_date" className="text-sm">Start Date</label>
+            <input required id="start_date" type="date" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
+            <button className="w-36 py-3 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
               Add Volunteer
             </button>
           </form>

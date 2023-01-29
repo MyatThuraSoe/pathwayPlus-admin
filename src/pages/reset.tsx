@@ -5,10 +5,15 @@ import { useRouter } from "next/router";
 import useLogin from "../hooks/useLogin";
 
 import Title from "../components/Title";
+import { FormEvent } from "react";
 
 const Reset: NextPage = () => {
   const router = useRouter();
   const { loading, error, login } = useLogin();
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
 
   return (
     <div>
@@ -19,11 +24,11 @@ const Reset: NextPage = () => {
       </div>
 
       <div className="relative flex">
-        <form onSubmit={void(0)} className="flex flex-col flex-1 px-8 pt-8">
+        <form onSubmit={onSubmit} className="flex flex-col flex-1 px-8 pt-8">
           <h1 onClick={router.back} className="pl-2 py-1 mb-8 text-lg border-l-4 border-primary underline cursor-pointer">Back to login</h1>
 
           <label htmlFor="email" className="mt-4 max-w-max">Email Address</label>
-          <input required disabled={loading} id="email" placeholder="Enter your email address" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
+          <input required disabled={loading} id="email" placeholder="Enter your email address" type="email" className="md:w-[600px] mt-1 p-2 border-2 rounded-md" />
 
           {/* The two elements below are invisible. They are only used for positioning. */}
           <p className="opacity-0 mt-4">0</p>

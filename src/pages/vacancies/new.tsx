@@ -61,7 +61,7 @@ const CreateVacancy: NextPage = () => {
             <label htmlFor="link" className="text-sm">Application Link</label>
             <input required id="link" type="url" placeholder="Google form link or email for applying position" onChange={editForm} className="w-full md:w-[600px] mt-1 mb-6 p-2 text-sm border-2 rounded-md" />
 
-            <button className="w-32 py-4 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
+            <button className="w-32 py-3 rounded-lg text-white text-sm bg-primary-light hover:bg-primary transition-colors">
               Create
             </button>
           </form>
