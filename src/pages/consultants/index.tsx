@@ -9,10 +9,9 @@ import Title from "../../components/Title";
 import useConsultants from "../../hooks/useConsultants";
 
 const Consultants: NextPage = () => {
-  const { loading, consultants, getConsultants } = useConsultants();
+  const { loading, consultants, getConsultants, deleteLoading, deleteConsultant } = useConsultants();
   const [selected, setSelected] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
   const consultantsData = loading ? [] : consultants;
 
   useEffect(() => {
@@ -28,8 +27,11 @@ const Consultants: NextPage = () => {
     setShowConfirmation(true);
   }
 
-  function deleteConsultant() {
-    return;
+  async function deleteAndRefresh() {
+    await deleteConsultant(selected);
+    getConsultants();
+    setSelected("");
+    setShowConfirmation(false);
   }
 
   return (
@@ -48,6 +50,7 @@ const Consultants: NextPage = () => {
         {consultantsData.map((consultant) => (
           <ConsultantCard key={consultant._id} consultant={consultant} confirmDelete={confirmDelete} />
         ))}
+        {consultantsData.length == 0 && !loading && <p>No consultants found</p>}
       </div>
 
       {showConfirmation && <div className="fixed z-40 top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/70">
@@ -56,7 +59,7 @@ const Consultants: NextPage = () => {
           <p className="mb-6">Are you sure you want to delete this consultant?</p>
           <div className="flex justify-between gap-x-6">
             <p onClick={cancel} className="flex flex-1 justify-center items-center py-2 border-2 rounded-md cursor-pointer">Cancel</p>
-            <p onClick={deleteConsultant} className="flex flex-1 justify-center items-center py-2 border-2 border-pink-red rounded-md cursor-pointer bg-pink-red text-white">
+            <p onClick={deleteAndRefresh} className="flex flex-1 justify-center items-center py-2 border-2 border-pink-red rounded-md cursor-pointer bg-pink-red text-white">
               {deleteLoading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Delete"}
             </p>
           </div>

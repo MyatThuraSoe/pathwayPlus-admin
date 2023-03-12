@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { objToQuery } from "../utils";
+import { getCookie } from "cookies-next";
 
 interface GetConsultantsQueries {
   limit?: number;
@@ -10,6 +11,7 @@ interface GetConsultantsQueries {
 
 export default function useConsultants() {
   const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [consultants, setConsultants] = useState<Consultant[]>([]);
 
@@ -18,18 +20,35 @@ export default function useConsultants() {
     try {
       filters.limit = filters.limit ?? 6; // default limit is 6
       const queries = objToQuery(filters);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/consultant/all?${queries}`, { method: "GET" });
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/consultants/all?${queries}`, { method: "GET" });
       if (response.status < 200 || response.status >= 500) {
         setLoading(false);
         return false;
       }
       const responseData = await response.json();
-      setConsultants(responseData.data);
-      setTotalPages(responseData.totalPages);
+      setConsultants(responseData.consultants);
+      setTotalPages(responseData.total);
       setLoading(false);
       return true;
     } catch (e) {
       setLoading(false);
+      return false;
+    }
+  }
+
+  async function deleteConsultant(id: string) {
+    setDeleteLoading(true);
+    // authorisation not working; fix
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/consultants/delete/${id}`, { method: "DELETE" });
+      if (response.status < 200 || response.status >= 500) {
+        setDeleteLoading(false);
+        return false;
+      }
+      setDeleteLoading(false);
+      return true;
+    } catch (e) {
+      setDeleteLoading(false);
       return false;
     }
   }
@@ -39,5 +58,7 @@ export default function useConsultants() {
     totalPages,
     consultants,
     getConsultants,
+    deleteLoading,
+    deleteConsultant,
   };
 }

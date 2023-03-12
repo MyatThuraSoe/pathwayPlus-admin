@@ -1,12 +1,10 @@
 interface Consultant {
   _id: string;
   name: string;
-  src: string;
+  email: string;
   university: string;
   country: string;
   specialization: string;
-  year: string;
-  introduction: string;
 }
 
 interface Volunteer {
@@ -28,11 +26,24 @@ interface Blog {
 }
 
 interface Vacancy {
-  // temporary, change later when api is implemented
-  [key: string]: any
+  _id: string;
+  title: string;
+  deadline: string;
+  requirements: string;
+  registerlink: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-interface Event {
-  // temporary, change later when api is implemented
-  [key: string]: any
+interface AvailableEvent {
+  _id: string;
+  name: string;
+  organizer: string;
+  date: Date;
+  time: string;
+  venue: string;
+  description: string;
+  registerlink: string;
+  updatedAt: Date;
+  createdAt: Date;
 }

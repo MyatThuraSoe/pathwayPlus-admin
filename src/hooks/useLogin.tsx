@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { setCookie } from "cookies-next";
+import { setCookie, getCookies } from "cookies-next";
 
 export default function useLogin() {
   const [loading, setLoading] = useState(false);
@@ -8,7 +8,7 @@ export default function useLogin() {
   async function login(email: string, password: string) {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

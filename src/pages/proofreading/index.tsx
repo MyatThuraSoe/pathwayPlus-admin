@@ -9,10 +9,9 @@ import useProofreaders from "../../hooks/useProofreaders";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Proofreading: NextPage = () => {
-  const { loading, proofreaders, getProofreaders } = useProofreaders();
+  const { loading, proofreaders, getProofreaders, deleteLoading, deleteProofreader } = useProofreaders();
   const [selected, setSelected] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
   const proofreadersData = loading ? [] : proofreaders;
 
   useEffect(() => {
@@ -28,8 +27,11 @@ const Proofreading: NextPage = () => {
     setShowConfirmation(true);
   }
 
-  function deleteConsultant() {
-    return;
+  async function deleteAndRefresh() {
+    await deleteProofreader(selected);
+    getProofreaders();
+    setSelected("");
+    setShowConfirmation(false);
   }
 
   return (
@@ -48,6 +50,7 @@ const Proofreading: NextPage = () => {
         {proofreadersData.map((proofreader) => (
           <ProofreaderCard key={proofreader._id} proofreader={proofreader} confirmDelete={confirmDelete} />
         ))}
+        {proofreadersData.length == 0 && !loading && <p>No proofreaders found</p>}
       </div>
 
       {showConfirmation && <div className="fixed z-40 top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-white/70">
@@ -56,7 +59,7 @@ const Proofreading: NextPage = () => {
           <p className="mb-6">Are you sure you want to delete this proofreader?</p>
           <div className="flex justify-between gap-x-6">
             <p onClick={cancel} className="flex flex-1 justify-center items-center py-2 border-2 rounded-md cursor-pointer">Cancel</p>
-            <p onClick={deleteConsultant} className="flex flex-1 justify-center items-center py-2 border-2 border-pink-red rounded-md cursor-pointer bg-pink-red text-white">
+            <p onClick={deleteAndRefresh} className="flex flex-1 justify-center items-center py-2 border-2 border-pink-red rounded-md cursor-pointer bg-pink-red text-white">
               {deleteLoading ? <AiOutlineLoading3Quarters className="animate-spin" /> : "Delete"}
             </p>
           </div>
