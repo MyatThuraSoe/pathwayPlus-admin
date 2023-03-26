@@ -8,6 +8,13 @@ interface GetVolunteersQueries {
   country?: string;
 }
 
+interface CreateVolunteersQueries {
+  name: string;
+  position: string;
+  department: string;
+  startDate: string;
+}
+
 export default function useVolunteers() {
   const [loading, setLoading] = useState(false);
   // const [totalPages, setTotalPages] = useState(1);
@@ -34,10 +41,29 @@ export default function useVolunteers() {
     }
   }
 
+  async function createVolunteer(body: CreateVolunteersQueries) {
+    setLoading(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/volunteer/create`, {
+        method: "GET",
+        body: JSON.stringify(body),
+      });
+      if (response.status < 200 || response.status >= 500) {
+        setLoading(false);
+        return false;
+      }
+      setLoading(false);
+      return true;
+    } catch (e) {
+      setLoading(false);
+      return false;
+    }
+  }
+
   return {
     loading,
-    // totalPages,
     volunteers,
     getVolunteers,
+    addVolunteer: createVolunteer,
   };
 }
